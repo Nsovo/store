@@ -1,0 +1,22 @@
+<p>
+  book works!
+</p>
+
+
+<h3>Books Details</h3>
+<table>
+  <tr>
+    <th> Id</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let book of allBooks">
+    <td>{{book.description}}</td>
+    <td>{{book.title}}</td>
+    <td>{{article.ISBN}}</td>
+    <td><button type="button" (click)="loadBookToEdit(book.id)">Edit</button> </td>
+    <td><button type="button" (click)="deleteBook(book.id)">Delete</button></td>
+  </tr>
+</table>
