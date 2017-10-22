@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ComponentService } from './component.service';
-import { Book } from './book';
+import { Movie} from './movie';
 
 @Component({
   selector: 'app-root',
@@ -12,29 +12,28 @@ import { Book } from './book';
 export class AppComponent implements OnInit {
 
   //Component properties
-  allBooks: Book[];
+  allMovies: Movie[];
   statusCode: number;
   requestProcessing = false;
-  bookIdToUpdate = null;
+  movieIdToUpdate = null;
   processValidation = false;
 
   //Create form
-  bookForm = new FormGroup({
-    title: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required)
+  movieForm = new FormGroup({
+    title: new FormControl('', Validators.required)
   });
   //Create constructor to get service instance
-  constructor(private bookService: ComponentService) {
+  constructor(private movieService: ComponentService) {
   }
   //Create ngOnInit() and and load articles
   ngOnInit(): void {
-    this.getAllBooks();
+    this.getAllMovies();
   }
   //Fetch all articles
-  getAllBooks() {
-    this.bookService.getAllBooks()
+  getAllMovies() {
+    this.movieService.getAllMovies()
       .subscribe(
-      data => this.allBooks = data,
+      data => this.allMovies = data,
       errorCode => this.statusCode = errorCode);
   }
 }

@@ -1,35 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
-import { Book } from './book';
+import { Movie } from './movie';
 
 @Injectable()
 export class ComponentService {
-  bookUrl = "http://localhost:3000/book";
+  movieUrl = "http://localhost:3000/";
   constructor(private http: Http) {
 }
-  //Fetch all books
-  getAllBooks(): Observable<Book[]> {
-    return this.http.get(this.bookUrl)
+  //Fetch all movies
+  getAllMovies(): Observable<Movie[]> {
+    return this.http.get(this.movieUrl)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  //Fetch book by id
-  getArticleById(bookId: string): Observable<Book> {
+  //Fetch movie by title
+  getMovieByTitle(title: string): Observable<Movie> {
     let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: cpHeaders });
-    console.log(this.bookUrl + "/" + bookId);
-    return this.http.get(this.bookUrl + "/" + bookId)
+    return this.http.get(this.movieUrl + "/" + title)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  //Delete book	
-  deleteArticleById(bookId: string): Observable<number> {
+  //Delete movie
+  deleteMovieById(movieId: string): Observable<number> {
     let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: cpHeaders });
-    return this.http.delete(this.bookUrl + "/" + bookId)
+    return this.http.delete(this.movieUrl + "/" + movieId)
       .map(success => success.status)
       .catch(this.handleError);
   }

@@ -1,26 +1,40 @@
 
 
-<h3>Book Store</h3>
+<h3>Movie Store</h3>
 
 <p>
-  Book details!
+  Movie details!
 </p>
 
 
+<div class="col-md-12">
+  <div class="col-md-3">
+    Id
+  </div>
+   <div class="col-md-3">
+    Title
+  </div>
+   <div class="col-md-3">
+    Director
+  </div>
+   <div class="col-md-3">
+    Actor
+  </div>
+
+</div>
 <table>
   <tr>
     <th> Id</th>
-    <th>ISBN</th>
     <th>Title</th>
-    <th>SubTitle</th>
-    <th>Description</th>
+    <th>Director</th>
+    <th>Actor</th>
   </tr>
-  <tr *ngFor="let book of allBooks">
-    <td>{{book.Id}}</td>
-    <td>book.ISBN</td>
-    <td>{{book.title}}</td>
-    <td>{{book.Description}}</td>
-    <td><button type="button" (click)="loadBookToEdit(book.id)">Edit</button> </td>
-    <td><button type="button" (click)="deleteBook(book.id)">Delete</button></td>
+  <tr *ngFor="let moviw of allMovies">
+    <td>{{movie.Id}}</td>
+    <td>movie.director</td>
+    <td>{{movie.title}}</td>
+    <td>{{movie.actor}}</td>
+    <td><button type="button" (click)="loadMvieToEdit(movie.id)">Edit</button> </td>
+    <td><button type="button" (click)="deleteMovie(movie.id)">Delete</button></td>
   </tr>
 </table>
