@@ -5,7 +5,7 @@ import { Movie } from './movie';
 
 @Injectable()
 export class ComponentService {
-  movieUrl = "http://localhost:3000/";
+  movieUrl = "http://localhost:51829/api/Movie";
   constructor(private http: Http) {
 }
   //Fetch all movies
@@ -13,6 +13,16 @@ export class ComponentService {
     return this.http.get(this.movieUrl)
       .map(this.extractData)
       .catch(this.handleError);
+  }
+
+  //Add movie
+  postMovie(Movie: Movie):Observable<Movie>{
+    let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: cpHeaders });
+    return this.http.post(this.movieUrl,Movie)
+      .map(this.extractData)
+      .catch(this.handleError);
+
   }
 
   //Fetch movie by title
