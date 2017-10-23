@@ -1,40 +1,30 @@
 
-
 <h3>Movie Store</h3>
 
 <p>
   Movie details!
 </p>
+<div>
 
-
-<div class="col-md-12">
-  <div class="col-md-3">
-    Id
-  </div>
-   <div class="col-md-3">
-    Title
-  </div>
-   <div class="col-md-3">
-    Director
-  </div>
-   <div class="col-md-3">
-    Actor
-  </div>
+  <form (ngSubmit)=" onSubmit(search)">
+    <input type="text" id="search"  name="search" placeholder="Search..." />
+  </form>
 
 </div>
-<table>
-  <tr>
-    <th> Id</th>
-    <th>Title</th>
-    <th>Director</th>
-    <th>Actor</th>
-  </tr>
-  <tr *ngFor="let moviw of allMovies">
-    <td>{{movie.Id}}</td>
-    <td>movie.director</td>
-    <td>{{movie.title}}</td>
-    <td>{{movie.actor}}</td>
-    <td><button type="button" (click)="loadMvieToEdit(movie.id)">Edit</button> </td>
-    <td><button type="button" (click)="deleteMovie(movie.id)">Delete</button></td>
-  </tr>
-</table>
+<div >
+      Id |
+      Title |
+      Director |
+      Actor |
+    </div>
+
+
+  <div>
+    <ul >
+      <li *ngFor="let movie of allMovies">
+        <div> {{movie.title}} {{movie.director}}</div>
+      </li>
+    </ul>
+  </div>
+
+

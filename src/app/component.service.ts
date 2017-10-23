@@ -5,12 +5,18 @@ import { Movie } from './movie';
 
 @Injectable()
 export class ComponentService {
-  movieUrl = "http://localhost:51829/api/Movie";
+   movieUrl = 'http://localhost:51829/api/Movie';
   constructor(private http: Http) {
 }
   //Fetch all movies
   getAllMovies(): Observable<Movie[]> {
-    return this.http.get(this.movieUrl)
+    //first header i was trying to sort out CORS!
+    let cpHeaders = new Headers({ 'Access-Control-Allow-Origin': '*' });
+    cpHeaders.append('Content-Type', 'application/json');
+    cpHeaders.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: cpHeaders });
+    console.log(this.movieUrl);
+    return this.http.get(this.movieUrl, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -29,7 +35,7 @@ export class ComponentService {
   getMovieByTitle(title: string): Observable<Movie> {
     let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: cpHeaders });
-    return this.http.get(this.movieUrl + "/" + title)
+    return this.http.get(this.movieUrl + "/" + title, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -38,7 +44,7 @@ export class ComponentService {
   deleteMovieById(movieId: string): Observable<number> {
     let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: cpHeaders });
-    return this.http.delete(this.movieUrl + "/" + movieId)
+    return this.http.delete(this.movieUrl + "/" + movieId, options)
       .map(success => success.status)
       .catch(this.handleError);
   }
